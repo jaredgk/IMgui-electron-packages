@@ -78,4 +78,15 @@ Once a job is validated, the node.js server will add the job to the job list, th
 *Remove Job Information: Will remove job from job list, also frees up output prefix for use with a different job.
 *Refresh: Will refresh the output from the current job. Use if output appars out of order.
 
-
+###Output XML File Analysis
+To start, click "Choose File" and select one of the output XML files from a job. Note: the app will check the suffix of the file to determine what output file it is, so if you rename output files be sure to keep the ".out.xml" or ".out.histograms.xml" suffix.
+####Tables (*.xml, *.intervals.xml)
+Once the XML file is processed, the tables included in the file will be added to the drop-down menu, with the first table present automatically generated and displayed. To save the active table, provide a filename or prefix (optional) and click either "Save as .csv" or "Save as .png". If no prefix is provided, a default will be used.
+####Histograms(*.histograms.xml)
+Once the XML file is processed, there will be two dropdown menus. The first dropdown menu will have a list of the types of variables contained in the file, the second dropdown will have a list of the available variables in the given list. Clicking "Make Graph" will render the graph in the app window.
+#####Downloading Image/Data
+To download the information from the chart selected, provide a filename or prefix in the input field (optional) and click either "Save Image as .png" or "Save Columns as .csv". The .png option will save an image of the graph, the .csv option will output a two-column, comma separated file.
+#####Generating Code for Plot
+Below the graph there is a code window that will generate code in either Matplotlib (Python), R, or Matlab. Clicking "Generate Code" will create a basic script that can be run to generate a simple plot, allowing the user to add additional information or features to the plot. The code can either be copied and pasted into an IDE or downloaded as a separate script. If a value is provided in the "Maximum line length" field, the arrays storing the data will be spread over multiple lines.
+###IMfig
+IMfig is a python script that has been converted to executable for for use on platforms without Python and GraphicsMagick. It generates a summary plot describing migration rates between populations. To generate the plot, provide the path to the non-XML output file in the "Input File" field. The output prefix is optional but must NOT contain any directory prefix, since get requests for the final image must be done from the internally specified output folder. All other options are optional. When submit is clicked, values are validated to ensure they fall in a proper range, with error messages being presented under options that have invalid values. The job is then sent to the server, which will create an EPS file and two JPG files (one high-res, one low-res) for the given input. The small JPG image will be posted to the app, the other files will be present in the app's home directory.
